@@ -1,6 +1,7 @@
 #pragma once
 #include <ostream>
 #include <random>
+#include <list>
 
 template<class T>
 class Matrix
