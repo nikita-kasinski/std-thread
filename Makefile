@@ -11,6 +11,8 @@ $(TEXEC): test/test.cpp include/matrix.h include/matrix-utils.h
 	g++ $(CPPFLAGS) test/test.cpp -o $(TEXEC) -lgtest -lgtest_main
 run: dirs $(EXEC)
 	valgrind --leak-check=yes ./$(EXEC)
+run-clean: dirs $(EXEC)
+	./$(EXEC)
 test: dirs $(TEXEC)
 	valgrind --leak-check=yes ./$(TEXEC)
 build: dirs $(EXEC)
