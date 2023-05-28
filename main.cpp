@@ -31,12 +31,12 @@ int main()
     Matrix<int> b = generate<int>(3, columns);
     std::cout << a << "\n"
               << b;
-    std::list<std::thread> threads;
-    for (auto numberOfThreads : std::ranges::iota_view(1u, columns))
+    for (auto numberOfThreads : std::ranges::iota_view(1u, columns + 1))
     {
+        std::list<std::thread> threads;
         Matrix<int> result(3, 3);
         std::vector<std::list<std::size_t>> columnsByThread(numberOfThreads, std::list<std::size_t>());
-        for (auto column : std::ranges::iota_view(1u, columns))
+        for (auto column : std::ranges::iota_view(0u, columns))
         {
             columnsByThread[column % numberOfThreads].push_back(column);
         }
@@ -48,7 +48,7 @@ int main()
             }
             std::cout << "\n";
         }
-        for (auto thread : std::ranges::iota_view(1u, numberOfThreads))
+        for (auto thread : std::ranges::iota_view(0u, numberOfThreads))
         {
             threads.emplace_back(
                 multiplyColumns<int>,
