@@ -2,6 +2,7 @@
 #include <ostream>
 #include <random>
 #include <list>
+#include <exception>
 
 template<class T>
 class Matrix
@@ -22,10 +23,18 @@ public:
     }
     T& get(std::size_t i, std::size_t j)
     {
+        if (i >= _n || j >= _m)
+        {
+            throw std::invalid_argument("Get element from matrix out of bounds");
+        }
         return _matr[i][j];
     }
     T at(std::size_t i, std::size_t j) const
     {
+        if (i >= _n || j >= _m)
+        {
+            throw std::invalid_argument("Get element from matrix out of bounds");
+        }
         return _matr[i][j];
     }
     std::size_t getRows() const
