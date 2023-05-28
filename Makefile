@@ -3,7 +3,7 @@ TEXEC=bin/testexec
 INCLUDE=-Iinclude
 SANITIZER=-fsanitize=address,undefined
 WARNINGS=-Wall -Wextra -Wpedantic
-CPPFLAGS=$(WARNINGS) -std=c++2a $(INCLUDE) #$(SANITIZER)
+CPPFLAGS=$(WARNINGS) -std=c++2a -O3 $(INCLUDE) #$(SANITIZER)
 .PHONY: run test build clean test dirs
 $(EXEC): src/main.cpp include/matrix.h include/matrix-utils.h
 	g++ $(CPPFLAGS) src/main.cpp -o $(EXEC)
