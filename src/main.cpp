@@ -7,22 +7,7 @@
 #include <list>
 
 #include "matrix.h"
-
-template <class T>
-std::ostream &operator<<(std::ostream &out, const Matrix<T> &matr)
-{
-    constexpr std::size_t width = 5;
-    for (std::size_t i = 0; i < matr.getRows(); ++i)
-    {
-        for (std::size_t j = 0; j < matr.getColumns(); ++j)
-        {
-            out << std::setw(width) << matr.at(i, j);
-        }
-        out << "\n";
-    }
-    out.flush();
-    return out;
-}
+#include "matrix-utils.h"
 
 int main()
 {

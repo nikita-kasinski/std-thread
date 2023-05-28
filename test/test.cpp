@@ -2,6 +2,7 @@
 #include <sstream>
 
 #include "matrix.h"
+#include "matrix-utils.h"
 
 TEST(TestMatrix, singleMultiplyColumn)
 {

@@ -5,9 +5,9 @@ SANITIZER=-fsanitize=address,undefined
 WARNINGS=-Wall -Wextra -Wpedantic
 CPPFLAGS=$(WARNINGS) -std=c++2a $(INCLUDE) #$(SANITIZER)
 .PHONY: run test build clean test dirs
-$(EXEC): src/main.cpp include/matrix.h
+$(EXEC): src/main.cpp include/matrix.h include/matrix-utils.h
 	g++ $(CPPFLAGS) src/main.cpp -o $(EXEC)
-$(TEXEC): test/test.cpp
+$(TEXEC): test/test.cpp include/matrix.h include/matrix-utils.h
 	g++ $(CPPFLAGS) test/test.cpp -o $(TEXEC) -lgtest -lgtest_main
 run: dirs $(EXEC)
 	valgrind --leak-check=yes ./$(EXEC)
