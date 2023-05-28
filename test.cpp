@@ -131,3 +131,19 @@ TEST(TestMatrix, TestMultiplyColumnsAll)
     EXPECT_EQ(result.at(1, 2), 122);
     EXPECT_EQ(result.at(2, 2), 194);
 }
+
+TEST(TestMatrix, TestGetColumns)
+{
+    constexpr std::size_t rows = 3;
+    constexpr std::size_t columns = 3;
+    Matrix<int> a(rows, columns);
+    EXPECT_EQ(a.getColumns(), columns);
+}
+
+TEST(TestMatrix, TestGetRows)
+{
+    constexpr std::size_t rows = 3;
+    constexpr std::size_t columns = 3;
+    Matrix<int> a(rows, columns);
+    EXPECT_EQ(a.getRows(), rows);
+}
