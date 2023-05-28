@@ -13,5 +13,5 @@ have to syncronize anything but provide shared container for result
   * CppCheck linter for static code analysis
   * gcc code sanitizers also for memory check and undefined behavior, which are enabled by specific options in Makefile
 ## Other
-Also I have tried **ranges** library, which provides some great features likes **iota_view**, which enables users to get rid of anoying 
+Also I have tried ***ranges*** library, which provides some great features likes ***iota_view***, which enables users to get rid of anoying 
 from x to y integer loops
