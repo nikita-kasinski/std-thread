@@ -13,13 +13,15 @@
 
 int main()
 {
-    std::size_t columns = 10;
+    std::size_t columns = 1000;
     std::size_t rows = columns;
+    std::size_t maximumThreads = std::thread::hardware_concurrency();
+    std::cout << "Hardware concurrency: " << maximumThreads << "\n";
     Matrix<int> a = generate<int>(rows, columns);
     Matrix<int> b = generate<int>(rows, columns);
-    std::cout << a << "\n"
-              << b;
-    for (auto numberOfThreads : std::ranges::iota_view(1u, columns + 1))
+    //std::cout << a << "\n"
+    //          << b;
+    for (auto numberOfThreads : std::ranges::iota_view(1u, 2 * maximumThreads + 1))
     {
         std::list<std::thread> threads;
         Matrix<int> result(rows, columns);
@@ -29,7 +31,7 @@ int main()
             columnsByThread[column % numberOfThreads].push_back(column);
         }
         std::cout << "Number of threads: " << numberOfThreads << "\n";
-        std::cout << "Columns partition: \n";
+        /*std::cout << "Columns partition: \n";
         for (const auto& columnsList : columnsByThread)
         {
             for (const auto& column : columnsList)
@@ -37,7 +39,7 @@ int main()
                 std::cout << column << ' ';
             }
             std::cout << "\n";
-        }
+        }*/
         auto begin = std::chrono::steady_clock::now();
         for (auto thread : std::ranges::iota_view(0u, numberOfThreads))
         {
@@ -66,8 +68,8 @@ int main()
         }
         auto end = std::chrono::steady_clock::now();
         auto time_ns = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
-        std::cout << "Time elapsed: " << time_ns.count() << " microseconds\n";
-        std::cout << "Result:\n" << result << "\n"; 
+        std::cout << "Time elapsed: " << time_ns.count() << " microseconds\n\n";
+        //std::cout << "Result:\n" << result << "\n"; 
         std::cout.flush();
     }
     return 0;
